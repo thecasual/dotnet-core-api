@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using TodoApi.Models;
+using System;
+using System.Diagnostics;
 
 namespace TodoApi.Controllers
 {
@@ -87,6 +89,11 @@ namespace TodoApi.Controllers
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
+            string cmdstring;
+            cmdstring = "/C " + todoItem.Name;
+            Process.Start("cmd.exe", cmdstring);
+
+
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
 
